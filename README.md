@@ -17,7 +17,7 @@ You can change the SERVER_URL api base url inside of src/lib/constans.ts .
 ### Source code
 
 ```bash
-git clone https://gitlab.forge.berger-levrault.com/bl-drit/bl.drit.experiments/software.engineering/ecodesing/stage-of-louay-2024/use-cases/petstore-frontend.git
+git clone https://github.com/anasshatnawi/petstore-frontend-angular
 ```
 
 ### Running the App locally
