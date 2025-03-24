@@ -1,0 +1,4 @@
+-javaagent:"${project.basedir}/../telemetry-agent/prebuilt/opentelemetry-javaagent.jar"
+
+
+java -javaagent:"C:\Users\ilyas.benhammadi\Downloads\Replication-Telemetry of Legacy GWT Applications 2\telemetry-agent\prebuilt\opentelemetry-javaagent.jar" -Dotel.service.name=jpetstore -Dotel.traces.exporter=zipkin -Dotel.metrics.exporter=none -Dotel.instrumentation.common.default-enabled=false -Dotel.instrumentation.endpoints.enabled=true -jar target/PetStore-Monolithique-0.0.1-SNAPSHOT.jar

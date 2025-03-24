@@ -1,0 +1,121 @@
+<div class="container">
+  <h2>Users</h2>
+
+  <ul class="list">
+    <li *ngFor="let user of users" class="list-item">
+      <div>
+        <strong>{{ user.username }}</strong
+        ><br />
+        {{ user.firstname }} {{ user.lastname }}<br />
+        Email: {{ user.email }}<br />
+        Phone: {{ user.phone }}<br />
+        Status: {{ user.status }}
+      </div>
+      <div class="button-group">
+        <button class="edit-button" (click)="editUser(user)">Edit</button>
+        <button class="delete-button" (click)="deleteUser(user.id)">
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+
+  <!-- EDIT FORM -->
+  <div class="form-container" *ngIf="editingUser">
+    <h3>Edit User {{ editingUser.id }}</h3>
+    <form (ngSubmit)="updateUser()" class="form">
+      <input
+        type="text"
+        [(ngModel)]="editingUser.username"
+        name="usernameEdit"
+        placeholder="Username"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="editingUser.firstname"
+        name="firstnameEdit"
+        placeholder="First Name"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="editingUser.lastname"
+        name="lastnameEdit"
+        placeholder="Last Name"
+        required
+      />
+      <input
+        type="email"
+        [(ngModel)]="editingUser.email"
+        name="emailEdit"
+        placeholder="Email"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="editingUser.phone"
+        name="phoneEdit"
+        placeholder="Phone"
+      />
+      <select [(ngModel)]="editingUser.status" name="statusEdit" required>
+        <option value="" disabled>Select Status</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+
+      <button type="submit" class="submit-button">Update User</button>
+      <button type="button" class="cancel-button" (click)="cancelEdit()">
+        Cancel
+      </button>
+    </form>
+  </div>
+
+  <!-- CREATE FORM -->
+  <div class="form-container">
+    <h3>Create New User</h3>
+    <form (ngSubmit)="createUser()" class="form">
+      <input
+        type="text"
+        [(ngModel)]="newUser.username"
+        name="username"
+        placeholder="Username"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="newUser.firstname"
+        name="firstname"
+        placeholder="First Name"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="newUser.lastname"
+        name="lastname"
+        placeholder="Last Name"
+        required
+      />
+      <input
+        type="email"
+        [(ngModel)]="newUser.email"
+        name="email"
+        placeholder="Email"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="newUser.phone"
+        name="phone"
+        placeholder="Phone"
+      />
+      <select [(ngModel)]="newUser.status" name="status" required>
+        <option value="" disabled>Select Status</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+      </select>
+
+      <button type="submit" class="submit-button">Create User</button>
+    </form>
+  </div>
+</div>

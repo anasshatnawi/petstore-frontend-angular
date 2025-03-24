@@ -1,0 +1,113 @@
+<div class="container">
+  <h2>Pets</h2>
+
+  <ul class="list">
+    <li *ngFor="let pet of pets" class="list-item">
+      <div>
+        <strong>{{ pet.name }}</strong> <br />
+        Category: {{ pet.category }} <br />
+        Tags: {{ pet.tags }} <br />
+        Status: <strong>{{ pet.status }}</strong>
+      </div>
+      <div class="button-group">
+        <button class="edit-button" (click)="editPet(pet)">Edit</button>
+        <button class="delete-button" (click)="deletePet(pet.id)">
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
+
+  <!-- EDIT FORM -->
+  <div class="form-container" *ngIf="editingPet">
+    <h3>Edit Pet {{ editingPet.id }}</h3>
+    <form (ngSubmit)="updatePet()" class="form">
+      <input
+        type="text"
+        [(ngModel)]="editingPet.name"
+        name="nameEdit"
+        placeholder="Name"
+        required
+      />
+      <select [(ngModel)]="editingPet.category" name="categoryEdit" required>
+        <option value="Dog" [selected]="editingPet.category === 'Dog'">
+          Dog
+        </option>
+        <option value="Cat" [selected]="editingPet.category === 'Cat'">
+          Cat
+        </option>
+        <option value="Bunny" [selected]="editingPet.category === 'Bunny'">
+          Bunny
+        </option>
+      </select>
+      <input
+        type="text"
+        [(ngModel)]="editingPet.tags"
+        name="tagsEdit"
+        placeholder="Tags"
+        required
+      />
+      <textarea
+        [(ngModel)]="editingPet.photoUrls"
+        name="photoUrlsEdit"
+        placeholder="Photo URLs (comma separated)"
+      ></textarea>
+      <select [(ngModel)]="editingPet.status" name="statusEdit" required>
+        <option
+          value="Available"
+          [selected]="editingPet.status === 'Available'"
+        >
+          Available
+        </option>
+        <option value="Pending" [selected]="editingPet.status === 'Pending'">
+          Pending
+        </option>
+        <option value="Sold" [selected]="editingPet.status === 'Sold'">
+          Sold
+        </option>
+      </select>
+
+      <button type="submit" class="submit-button">Update Pet</button>
+      <button type="button" class="cancel-button" (click)="cancelEdit()">
+        Cancel
+      </button>
+    </form>
+  </div>
+
+  <!-- CREATE FORM -->
+  <div class="form-container">
+    <h3>Add New Pet</h3>
+    <form (ngSubmit)="createPet()" class="form">
+      <input
+        [(ngModel)]="newPet.name"
+        name="name"
+        placeholder="Name"
+        required
+      />
+      <select [(ngModel)]="newPet.category" name="category" required>
+        <option value="" disabled selected>Select Category</option>
+        <option value="Dog">Dog</option>
+        <option value="Cat">Cat</option>
+        <option value="Bunny">Bunny</option>
+      </select>
+      <input
+        [(ngModel)]="newPet.tags"
+        name="tags"
+        placeholder="Tags"
+        required
+      />
+      <textarea
+        [(ngModel)]="newPet.photoUrls"
+        name="photoUrls"
+        placeholder="Photo URLs (comma separated)"
+      ></textarea>
+      <select [(ngModel)]="newPet.status" name="status" required>
+        <option value="" disabled selected>Select Status</option>
+        <option value="Available">Available</option>
+        <option value="Pending">Pending</option>
+        <option value="Sold">Sold</option>
+      </select>
+      <button type="submit" class="submit-button">Create Pet</button>
+    </form>
+  </div>
+</div>
