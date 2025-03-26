@@ -54,7 +54,6 @@ export class PetsComponent implements OnInit {
           .filter((url: string) => url.trim() !== ''),
       })
       .subscribe(() => {
-        this.fetchPets();
         this.newPet = {
           name: '',
           category: '',
@@ -66,7 +65,7 @@ export class PetsComponent implements OnInit {
   }
 
   deletePet(id?: number) {
-    this.petsService.deletePet(id).subscribe(() => this.fetchPets());
+    this.petsService.deletePet(id);
   }
 
   editPet(pet: Pet) {
@@ -84,7 +83,6 @@ export class PetsComponent implements OnInit {
           .filter((url: string) => url.trim() !== ''),
       })
       .subscribe(() => {
-        this.fetchPets();
         this.editingPet = null; // Reset editing
       });
   }

@@ -1,5 +1,8 @@
 <div class="container">
-  <h2>Pets</h2>
+  <div class="header">
+    <h2>Pets</h2>
+    <button (click)="fetchPets()" class="refresh-button">Refresh Pets</button>
+  </div>
 
   <ul class="list">
     <li *ngFor="let pet of pets" class="list-item">

@@ -1,5 +1,8 @@
 <div class="container">
-  <h2>Users</h2>
+  <div class="header">
+    <h2>Users</h2>
+    <button (click)="fetchUsers()" class="refresh-button">Refresh Users</button>
+  </div>
 
   <ul class="list">
     <li *ngFor="let user of users" class="list-item">

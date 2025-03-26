@@ -37,7 +37,6 @@ export class UsersComponent implements OnInit {
 
   createUser() {
     this.usersService.createUser(this.newUser).subscribe(() => {
-      this.fetchUsers();
       this.newUser = {
         username: '',
         firstname: '',
@@ -50,7 +49,7 @@ export class UsersComponent implements OnInit {
   }
 
   deleteUser(id?: number) {
-    this.usersService.deleteUser(id).subscribe(() => this.fetchUsers());
+    this.usersService.deleteUser(id);
   }
 
   editUser(user: User) {
@@ -63,7 +62,6 @@ export class UsersComponent implements OnInit {
     this.usersService
       .updateUser(this.editingUser.id, this.editingUser)
       .subscribe(() => {
-        this.fetchUsers();
         this.editingUser = null; // Reset editing
       });
   }

@@ -56,7 +56,6 @@ export class OrdersComponent implements OnInit {
     }
 
     this.ordersService.createOrder(this.newOrder).subscribe(() => {
-      this.fetchOrders();
       this.newOrder = {
         petId: 0,
         quantity: 1,
@@ -68,7 +67,7 @@ export class OrdersComponent implements OnInit {
   }
 
   deleteOrder(id?: number) {
-    this.ordersService.deleteOrder(id).subscribe(() => this.fetchOrders());
+    this.ordersService.deleteOrder(id);
   }
 
   editOrder(order: Order) {
@@ -81,7 +80,6 @@ export class OrdersComponent implements OnInit {
     this.ordersService
       .updateOrder(this.editingOrder.id, this.editingOrder)
       .subscribe(() => {
-        this.fetchOrders();
         this.editingOrder = null; // Reset editing state
       });
   }
