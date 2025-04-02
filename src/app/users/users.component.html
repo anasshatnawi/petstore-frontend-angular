@@ -3,36 +3,25 @@
     <h2>Users</h2>
     <button (click)="fetchUsers()" class="refresh-button">Refresh Users</button>
   </div>
-
-  <ul class="list">
-    <li *ngFor="let user of users" class="list-item">
-      <div>
-        <strong>{{ user.username }}</strong
-        ><br />
-        {{ user.firstname }} {{ user.lastname }}<br />
-        Email: {{ user.email }}<br />
-        Phone: {{ user.phone }}<br />
-        Status: {{ user.status }}
-      </div>
-      <div class="button-group">
-        <button class="edit-button" (click)="editUser(user)">Edit</button>
-        <button class="delete-button" (click)="deleteUser(user.id)">
-          Delete
-        </button>
-      </div>
-    </li>
-  </ul>
-
   <!-- EDIT FORM -->
   <div class="form-container" *ngIf="editingUser">
     <h3>Edit User {{ editingUser.id }}</h3>
     <form (ngSubmit)="updateUser()" class="form">
+      <input
+        type="email"
+        [(ngModel)]="editingUser.email"
+        name="emailEdit"
+        placeholder="Email"
+        required
+        autoComplete="off"
+      />
       <input
         type="text"
         [(ngModel)]="editingUser.username"
         name="usernameEdit"
         placeholder="Username"
         required
+        autoComplete="off"
       />
       <input
         type="text"
@@ -40,6 +29,7 @@
         name="firstnameEdit"
         placeholder="First Name"
         required
+        autoComplete="off"
       />
       <input
         type="text"
@@ -47,13 +37,7 @@
         name="lastnameEdit"
         placeholder="Last Name"
         required
-      />
-      <input
-        type="email"
-        [(ngModel)]="editingUser.email"
-        name="emailEdit"
-        placeholder="Email"
-        required
+        autoComplete="off"
       />
       <input
         type="text"
@@ -79,11 +63,20 @@
     <h3>Create New User</h3>
     <form (ngSubmit)="createUser()" class="form">
       <input
+        type="email"
+        [(ngModel)]="newUser.email"
+        name="email"
+        placeholder="Email"
+        required
+        autoComplete="off"
+      />
+      <input
         type="text"
         [(ngModel)]="newUser.username"
         name="username"
         placeholder="Username"
         required
+        autoComplete="off"
       />
       <input
         type="text"
@@ -91,6 +84,7 @@
         name="firstname"
         placeholder="First Name"
         required
+        autoComplete="off"
       />
       <input
         type="text"
@@ -98,13 +92,7 @@
         name="lastname"
         placeholder="Last Name"
         required
-      />
-      <input
-        type="email"
-        [(ngModel)]="newUser.email"
-        name="email"
-        placeholder="Email"
-        required
+        autoComplete="off"
       />
       <input
         type="text"
@@ -121,4 +109,23 @@
       <button type="submit" class="submit-button">Create User</button>
     </form>
   </div>
+
+  <ul class="list">
+    <li *ngFor="let user of users" class="list-item">
+      <div>
+        <strong>{{ user.username }}</strong
+        ><br />
+        {{ user.firstname }} {{ user.lastname }}<br />
+        Email: {{ user.email }}<br />
+        Phone: {{ user.phone }}<br />
+        Status: {{ user.status }}
+      </div>
+      <div class="button-group">
+        <button class="edit-button" (click)="editUser(user)">Edit</button>
+        <button class="delete-button" (click)="deleteUser(user.id)">
+          Delete
+        </button>
+      </div>
+    </li>
+  </ul>
 </div>
