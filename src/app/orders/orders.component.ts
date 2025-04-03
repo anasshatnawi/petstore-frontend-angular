@@ -67,7 +67,7 @@ export class OrdersComponent implements OnInit {
   }
 
   deleteOrder(id?: number) {
-    this.ordersService.deleteOrder(id);
+    this.ordersService.deleteOrder(id).subscribe();
   }
 
   editOrder(order: Order) {

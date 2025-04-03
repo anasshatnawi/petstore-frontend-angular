@@ -65,7 +65,7 @@ export class PetsComponent implements OnInit {
   }
 
   deletePet(id?: number) {
-    this.petsService.deletePet(id);
+    this.petsService.deletePet(id).subscribe();
   }
 
   editPet(pet: Pet) {
