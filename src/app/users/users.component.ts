@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from './users.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { User } from '../../lib/types';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css'],
   imports: [FormsModule, CommonModule],
 })
 export class UsersComponent implements OnInit {
@@ -35,7 +34,11 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  createUser() {
+  createUser(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+
     this.usersService.createUser(this.newUser).subscribe(() => {
       this.newUser = {
         username: '',
@@ -45,6 +48,7 @@ export class UsersComponent implements OnInit {
         phone: '',
         status: '',
       };
+      form.resetForm(); // Reset the form after successful submission
     });
   }
 
@@ -57,8 +61,12 @@ export class UsersComponent implements OnInit {
     this.editingUser = { ...user }; // Clone the user data into editing form
   }
 
-  updateUser() {
+  updateUser(form: NgForm) {
     if (!this.editingUser || !this.editingUser.id) return;
+
+    if (form.invalid) {
+      return;
+    }
 
     this.usersService
       .updateUser(this.editingUser.id, this.editingUser)
@@ -69,5 +77,9 @@ export class UsersComponent implements OnInit {
 
   cancelEdit() {
     this.editingUser = null;
+  }
+
+  print() {
+    console.log('test');
   }
 }

@@ -6,7 +6,7 @@
   <!-- EDIT FORM -->
   <div class="form-container" *ngIf="editingUser">
     <h3>Edit User {{ editingUser.id }}</h3>
-    <form (ngSubmit)="updateUser()" class="form">
+    <form #editForm="ngForm" (ngSubmit)="updateUser(editForm)" class="form">
       <input
         type="email"
         [(ngModel)]="editingUser.email"
@@ -14,7 +14,9 @@
         placeholder="Email"
         required
         autoComplete="off"
+        #emailEdit="ngModel"
       />
+
       <input
         type="text"
         [(ngModel)]="editingUser.username"
@@ -22,7 +24,9 @@
         placeholder="Username"
         required
         autoComplete="off"
+        #usernameEdit="ngModel"
       />
+
       <input
         type="text"
         [(ngModel)]="editingUser.firstname"
@@ -30,7 +34,9 @@
         placeholder="First Name"
         required
         autoComplete="off"
+        #firstnameEdit="ngModel"
       />
+
       <input
         type="text"
         [(ngModel)]="editingUser.lastname"
@@ -38,14 +44,22 @@
         placeholder="Last Name"
         required
         autoComplete="off"
+        #lastnameEdit="ngModel"
       />
+
       <input
         type="text"
         [(ngModel)]="editingUser.phone"
         name="phoneEdit"
         placeholder="Phone"
       />
-      <select [(ngModel)]="editingUser.status" name="statusEdit" required>
+
+      <select
+        [(ngModel)]="editingUser.status"
+        name="statusEdit"
+        required
+        #statusEdit="ngModel"
+      >
         <option value="" disabled>Select Status</option>
         <option value="Active">Active</option>
         <option value="Inactive">Inactive</option>
@@ -61,7 +75,7 @@
   <!-- CREATE FORM -->
   <div class="form-container">
     <h3>Create New User</h3>
-    <form (ngSubmit)="createUser()" class="form">
+    <form #createForm="ngForm" (ngSubmit)="createUser(createForm)" class="form">
       <input
         type="email"
         [(ngModel)]="newUser.email"
@@ -69,7 +83,9 @@
         placeholder="Email"
         required
         autoComplete="off"
+        #email="ngModel"
       />
+
       <input
         type="text"
         [(ngModel)]="newUser.username"
@@ -77,7 +93,9 @@
         placeholder="Username"
         required
         autoComplete="off"
+        #username="ngModel"
       />
+
       <input
         type="text"
         [(ngModel)]="newUser.firstname"
@@ -85,7 +103,9 @@
         placeholder="First Name"
         required
         autoComplete="off"
+        #firstname="ngModel"
       />
+
       <input
         type="text"
         [(ngModel)]="newUser.lastname"
@@ -93,20 +113,30 @@
         placeholder="Last Name"
         required
         autoComplete="off"
+        #lastname="ngModel"
       />
+
       <input
         type="text"
         [(ngModel)]="newUser.phone"
         name="phone"
         placeholder="Phone"
       />
-      <select [(ngModel)]="newUser.status" name="status" required>
+
+      <select
+        [(ngModel)]="newUser.status"
+        name="status"
+        required
+        #status="ngModel"
+      >
         <option value="" disabled>Select Status</option>
         <option value="Active">Active</option>
         <option value="Inactive">Inactive</option>
       </select>
 
-      <button type="submit" class="submit-button">Create User</button>
+      <button type="submit" class="submit-button" (click)="print()">
+        Create User
+      </button>
     </form>
   </div>
 
