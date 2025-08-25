@@ -13,7 +13,9 @@ export class OrdersService {
   constructor(private http: HttpClient) {}
 
   getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.apiUrl + 'getOrders').pipe(
+    return this.http
+      .get<Order[]>(this.apiUrl + 'getOrders')
+      .pipe(
       catchError((err) => {
         alert(err?.error?.message || 'Failed to fetch orders');
         return throwError(() => err);
@@ -22,7 +24,9 @@ export class OrdersService {
   }
 
   createOrder(order: Order): Observable<Order> {
-    return this.http.post<Order>(this.apiUrl + 'addOrder', order).pipe(
+    return this.http
+      .post<Order>(this.apiUrl + 'addOrder', order)
+      .pipe(
       catchError((err) => {
         alert(err?.error?.message || 'Failed to create order');
         return throwError(() => err);
@@ -31,7 +35,9 @@ export class OrdersService {
   }
 
   updateOrder(id: number, order: Order): Observable<Order> {
-    return this.http.put<Order>(`${this.apiUrl}updateOrder/${id}`, order).pipe(
+    return this.http
+      .put<Order>(`${this.apiUrl}updateOrder/${id}`, order)
+      .pipe(
       catchError((err) => {
         alert(err?.error?.message || 'Failed to update order');
         return throwError(() => err);
@@ -40,7 +46,9 @@ export class OrdersService {
   }
 
   deleteOrder(id?: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}deleteOrder/${id}`).pipe(
+    return this.http
+      .delete<void>(`${this.apiUrl}deleteOrder/${id}`)
+      .pipe(
       catchError((err) => {
         alert(err?.error?.message || 'Failed to delete order');
         return throwError(() => err);

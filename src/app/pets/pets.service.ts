@@ -13,25 +13,31 @@ export class PetsService {
   constructor(private http: HttpClient) {}
 
   getPets(): Observable<Pet[]> {
-    return this.http.get<Pet[]>(this.apiUrl + 'getPets').pipe(
-      catchError((err) => {
-        alert(err?.error?.message || 'Failed to fetch pets');
-        return throwError(() => err);
-      })
-    );
+    return this.http
+      .get<Pet[]>(this.apiUrl + 'getPets')
+      .pipe(
+        catchError((err) => {
+          alert(err?.error?.message || 'Failed to fetch pets');
+          return throwError(() => err);
+        })
+      );
   }
 
   createPet(pet: Pet): Observable<Pet> {
-    return this.http.post<Pet>(this.apiUrl + 'addPet', pet).pipe(
-      catchError((err) => {
-        alert(err?.error?.message || 'Failed to create pet');
-        return throwError(() => err);
-      })
-    );
+    return this.http
+      .post<Pet>(this.apiUrl + 'addPet', pet)
+      .pipe(
+        catchError((err) => {
+          alert(err?.error?.message || 'Failed to create pet');
+          return throwError(() => err);
+        })
+      );
   }
 
   updatePet(id: number, pet: Pet): Observable<Pet> {
-    return this.http.put<Pet>(`${this.apiUrl}updatePet/${id}`, pet).pipe(
+    return this.http
+      .put<Pet>(`${this.apiUrl}updatePet/${id}`, pet)
+      .pipe(
       catchError((err) => {
         alert(err?.error?.message || 'Failed to update pet');
         return throwError(() => err);
@@ -40,7 +46,9 @@ export class PetsService {
   }
 
   deletePet(id?: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}deletePet/${id}`).pipe(
+    return this.http
+      .delete<void>(`${this.apiUrl}deletePet/${id}`)
+      .pipe(
       catchError((err) => {
         alert(err?.error?.message || 'Failed to delete pet');
         return throwError(() => err);

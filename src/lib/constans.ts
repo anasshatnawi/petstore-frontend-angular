@@ -1,1 +1,3 @@
-export const SERVER_URL = 'http://localhost:4000/';
+export const SERVER_URL = 'http://localhost:8000/';
+export const DEFAULT_AUTH_TOKEN =
+  'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbkBwZXRzdG9yZS5jb20iLCJpYXQiOjE3NTU2Nzg0NDIsImV4cCI6MTc1NTc2NDg0Mn0.OW62Gbzw2GCkhSn0CMKIsfdS1XMe23sx-vcT1C7DnZ8';
